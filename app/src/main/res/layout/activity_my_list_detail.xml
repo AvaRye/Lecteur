@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPinkReallyLight"
+        tools:context=".myListDetail.MyListDetailActivity">
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/detail_top"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/detail_image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="20dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"/>
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/detail_name"
+                android:layout_margin="20dp"
+                app:layout_constraintLeft_toRightOf="@id/detail_image"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="20sp"
+                tools:text="【七十年代】無法取代的復古小資情調"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"/>
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/detail_author"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintLeft_toRightOf="@id/detail_image"
+                app:layout_constraintTop_toBottomOf="@id/detail_name"
+                tools:text="April"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/introduction"
+                android:layout_margin="20dp"
+                app:layout_constraintLeft_toRightOf="@id/detail_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"/>
+
+    </android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/detail_recV"
+            app:layout_constraintTop_toBottomOf="@id/detail_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</android.support.constraint.ConstraintLayout>

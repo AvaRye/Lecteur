@@ -6,7 +6,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
+        tools:context=".login.MainActivity"
         android:background="@color/colorPinkReallyLight">
     <android.support.v7.widget.AppCompatImageView
             android:id="@+id/image_login"
@@ -16,6 +16,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_margin="30dp"
+            android:src="@drawable/ic_music_note_black_24dp"
             />
     
     <android.support.constraint.ConstraintLayout
@@ -40,7 +41,7 @@
                 android:textSize="20sp"
                 android:singleLine="true"
                 android:hint="@string/mobile_number"
-                android:inputType="number"
+                android:inputType="phone"
                 android:maxLength="11"/>
         <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/password_login"
@@ -51,6 +52,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/number_login"
                 app:layout_constraintBottom_toTopOf="@id/button_login"
+                android:inputType="textPassword"
                 android:textSize="20sp"
                 android:singleLine="true"
                 android:hint="@string/password"/>
