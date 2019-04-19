@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/widget_list_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
+        tools:targetApi="o">
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/part_detail_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            tools:text="1"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/part_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintLeft_toRightOf="@id/part_detail_rank"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/part_detail_ar"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            tools:text="[myList] High Hopes"
+            />
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/part_detail_ar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintLeft_toRightOf="@id/part_detail_rank"
+            app:layout_constraintTop_toBottomOf="@id/part_detail_name"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="#6B6B6B"
+            tools:text="Petty Griffin"
+            />
+
+</android.support.constraint.ConstraintLayout>

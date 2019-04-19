@@ -11,13 +11,12 @@ import android.widget.TextView
 import cn.edu.twt.retrox.recyclerviewdsl.Item
 import cn.edu.twt.retrox.recyclerviewdsl.ItemController
 import com.example.lecteur.R
-import com.example.lecteur.Translation
+import com.example.lecteur.myList.TraList
 import com.example.lecteur.myListDetail.MyListDetailActivity
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.layoutInflater
 
-class ListItem(val mContext: Context, val info:MutableList<Translation>, val position: Int) : Item {
-    private var dataSet: MutableList<Translation> = ArrayList()
+class ListItem(val mContext: Context, val info: TraList) : Item {
     companion object Controller : ItemController {
 
         override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
@@ -27,23 +26,24 @@ class ListItem(val mContext: Context, val info:MutableList<Translation>, val pos
             val name = view.findViewById<TextView>(R.id.part_list_name)
             val num = view.findViewById<TextView>(R.id.part_list_num)
             val image = view.findViewById<ImageView>(R.id.part_list_image)
-            return ViewHolder(view, name, num, image, layout)
+            return ListItem.Controller.ViewHolder(view, name, num, image, layout)
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: Item) {
             holder as ViewHolder
             item as ListItem
-            //undone
-            holder.name.text = item.info[2].toString()
-            holder.num.text = item.info[2].toString()
-            Picasso.with(item.mContext).load("")
+
+            val playList: com.example.lecteur.myList.Playlist = item.info.playlist[0]
+            holder.name.text = playList.name
+            holder.num.text = playList.playCount.toString()
+            Picasso.with(item.mContext).load(playList.coverImgUrl)
                 .fit()
                 .centerCrop()
                 .into(holder.image)
             holder.layout.setOnClickListener {
                 val intent = Intent(item.mContext, MyListDetailActivity::class.java)
-                        //undone
-                    .putExtra("detail", "blabla")
+                    //undone
+                    .putExtra("listID", playList.id.toString())
                 item.mContext.startActivity(intent)
             }
         }

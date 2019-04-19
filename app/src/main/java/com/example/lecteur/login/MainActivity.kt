@@ -1,43 +1,30 @@
 package com.example.lecteur.login
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import com.example.lecteur.GetRequestInterface
 import com.example.lecteur.R
-import com.example.lecteur.Translation
 import com.example.lecteur.myList.MyListActivity
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
 //import org.jetbrains.anko.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.Exception
-import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var editNumber: EditText
     private lateinit var editPassword: EditText
     private lateinit var login: TextView
-    private var number: CharSequence? = null
-    private var password: CharSequence? = null
-    private lateinit var translation: Translation
-    lateinit var info: Translation
+    private lateinit var number: CharSequence
+    private lateinit var password: CharSequence
+    lateinit var info: TraLogin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-        MainActivityUI().setContentView(this)
-//        init()
+        setContentView(R.layout.activity_main)
+//        MainActivityUI().setContentView(this)
+        init()
     }
 
     private fun init() {
@@ -56,25 +43,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun tryLogin(ui: MainActivity, number: CharSequence?, password: CharSequence?) {
         GlobalScope.launch {
+            //            ui.doAsync{
+//                activityUiThreadWithContext {
             try {
                 val retrofit = com.example.lecteur.Retrofit()
-                info = retrofit.request.getCallAsync(number.toString(), password.toString()).await()
+                info = retrofit.request.getLoginAsync(number.toString(), password.toString()).await()
                 if (info.code == 200) {
-                    Toast.makeText(ui, "Welcome", Toast.LENGTH_LONG).show()
-                    val intent = Intent()
-                        .setClass(ui, MyListActivity::class.java)
-                    startActivity(intent)
+                    toast("Welcome")
+                    startActivity<MyListActivity>()
                 } else {
-                    Toast.makeText(ui, "Wrong information.", Toast.LENGTH_LONG).show()
+                    toast("Wrong information.")
                 }
             } catch (e: Exception) {
-                Toast.makeText(ui, "Sorry emmmm", Toast.LENGTH_LONG).show()
+                toast("Sorry emmmm")
                 e.printStackTrace()
             }
+
         }
     }
+}
 
-    class MainActivityUI : AnkoComponent<MainActivity> {
+/*    class MainActivityUI : AnkoComponent<MainActivity> {
         lateinit var info: Translation
 
         override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
@@ -88,27 +77,14 @@ class MainActivity : AppCompatActivity() {
 
                 button("Log in") {
                     onClick {
-                        try {
-                            val retrofit = com.example.lecteur.Retrofit()
-                            info = retrofit.request.getCallAsync(number.toString(), password.toString()).await()
-                            if (info.code == 200) {
-                                toast("Welcome")
-                                startActivity<MyListActivity>()
-                            } else {
-                                toast("Wrong information.")
-                            }
-                        } catch (e: Exception) {
-                            toast("Sorry emmmm")
-                            e.printStackTrace()
-                        }
+                        ui.owner.tryLogin(ui, number.toString(), password.toString())
                     }
                 }
 
             }
         }
 
-    }
-}
+    }*/
 
 
 /*        ui.doAsync {

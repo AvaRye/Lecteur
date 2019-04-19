@@ -1,6 +1,6 @@
-package com.example.lecteur
+package com.example.lecteur.login
 
-data class Translation(
+data class TraLogin(
     val account: Account,
     val bindings: List<Binding>,
     val code: Int,
